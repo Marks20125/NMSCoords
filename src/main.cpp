@@ -36,13 +36,9 @@ struct HexPortalGlyphs
         std::stringstream ss;
         ss << std::hex << std::uppercase;
         ss << planetIndex;
-        ss << ' ';
         ss << std::setfill('0') << std::setw(3) << systemIndex;
-        ss << ' ';
         ss << std::setfill('0') << std::setw(2) << y;
-        ss << ' ';
         ss << std::setfill('0') << std::setw(3) << z;
-        ss << ' ';
         ss << std::setfill('0') << std::setw(3) << x;
 
         return ss.str();
@@ -109,7 +105,7 @@ int main(int argc, char* argv[])
         std::string code {jsonData[names[selection - 1]]["code"]};
 
         HexPortalGlyphs hexPortalGlyphs {galCoordsToHexPortalGlyphs(code)};
-        std::cout << hexPortalGlyphs.toHex() << '\n';
+        std::cout << "https://nmsportals.github.io/#" + hexPortalGlyphs.toHex() + '\n';
     }
 
     if (argc > 2 && std::string_view(argv[1]) == "add")
@@ -126,4 +122,6 @@ int main(int argc, char* argv[])
         writeJsonFile << temp.dump(4);
         writeJsonFile.close();
     }
+
+    return 0;
 }
